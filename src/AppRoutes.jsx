@@ -8,15 +8,12 @@ import {
 } from 'react-router-dom';
 
 import Login from './components/Login';
-import Navbar from './components/Navbar';
 
 // Lazy load feature components
 const Landing = React.lazy(() => import('./features/Landing'));
+const Chat = React.lazy(() => import('./features/Chat'));
 
 const MyProfile = React.lazy(() => import('./features/MyProfile'));
-const RoleConfiguration = React.lazy(() =>
-  import('./features/RoleConfiguration')
-);
 
 const Settings = React.lazy(() => import('./features/Settings'));
 
@@ -42,21 +39,15 @@ function AppRoutes() {
             path='/*'
             element={
               <>
-                <Navbar />
-                <Container maxWidth={false} sx={{ padding: 2 }}>
-                  <Suspense fallback={<LoadingFallback />}>
-                    <Routes>
-                      <Route path='/' element={<Landing />} />
-                      <Route path='/settings' element={<Settings />} />
-                      <Route path='/my-profile' element={<MyProfile />} />
-                      <Route
-                        path='/role-configuration'
-                        element={<RoleConfiguration />}
-                      />
-                      <Route path='*' element={<Navigate to='/' replace />} />
-                    </Routes>
-                  </Suspense>
-                </Container>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    <Route path='/' element={<Landing />} />
+                    <Route path='/chat' element={<Chat />} />
+                    <Route path='/settings' element={<Settings />} />
+                    <Route path='/my-profile' element={<MyProfile />} />
+                    <Route path='*' element={<Navigate to='/' replace />} />
+                  </Routes>
+                </Suspense>
               </>
             }
           />
