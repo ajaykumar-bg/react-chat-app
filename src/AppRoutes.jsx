@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 
 // Lazy load feature components
 const Landing = React.lazy(() => import('./features/Landing'));
@@ -39,6 +40,7 @@ function AppRoutes() {
             path='/*'
             element={
               <>
+                <Navbar />
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
                     <Route path='/' element={<Landing />} />
