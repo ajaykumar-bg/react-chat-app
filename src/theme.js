@@ -33,15 +33,15 @@ const themeConfigs = {
     palette: {
       mode: 'light',
       primary: {
-        main: '#25D366',
-        light: '#4FE688',
-        dark: '#1DA851',
+        main: '#075E54',
+        light: '#128C7E',
+        dark: '#054640',
         contrastText: '#FFFFFF',
       },
       secondary: {
-        main: '#128C7E',
-        light: '#34A5A0',
-        dark: '#0C5D56',
+        main: '#25D366',
+        light: '#4FE688',
+        dark: '#1DA851',
         contrastText: '#FFFFFF',
       },
       background: {
@@ -53,19 +53,19 @@ const themeConfigs = {
         secondary: '#667781',
       },
       action: {
-        hover: 'rgba(37, 211, 102, 0.04)',
-        selected: 'rgba(37, 211, 102, 0.08)',
+        hover: 'rgba(7, 94, 84, 0.04)',
+        selected: 'rgba(7, 94, 84, 0.08)',
       },
       divider: '#E9EDEF',
     },
     scrollbar: {
       track: '#f0f2f5',
-      thumb: '#25D366',
-      thumbHover: '#1DA851',
+      thumb: '#075E54',
+      thumbHover: '#054640',
       thumbActive: '#128C7E',
       bodyTrack: '#f7f8fa',
-      bodyThumb: '#25D366',
-      bodyThumbHover: '#1DA851',
+      bodyThumb: '#075E54',
+      bodyThumbHover: '#054640',
     },
   },
 };

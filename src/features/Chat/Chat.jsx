@@ -38,14 +38,13 @@ const ChatContent = () => {
   }, [users.length, setUsers, setMessages, selectUser]);
 
   return (
-    <Box sx={{ height: 'calc(100vh - 120px)', p: 2, position: 'relative' }}>
+    <Box sx={{ height: 'calc(100vh - 120px)', position: 'relative' }}>
       <ConnectionStatus isConnected={isConnected} />
       <Paper
         elevation={3}
         sx={{
           height: '100%',
           overflow: 'hidden',
-          borderRadius: 2,
         }}
       >
         <Grid container sx={{ height: '100%' }}>
