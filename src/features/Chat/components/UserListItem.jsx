@@ -30,7 +30,7 @@ const UserListItem = ({ user, isSelected, onClick }) => {
 
   return (
     <ListItem
-      button
+      component='button'
       onClick={onClick}
       selected={isSelected}
       sx={{
@@ -44,6 +44,9 @@ const UserListItem = ({ user, isSelected, onClick }) => {
             : theme.palette.action.hover,
         },
         cursor: 'pointer',
+        border: 'none',
+        width: '100%',
+        textAlign: 'left',
       }}
     >
       <ListItemAvatar>

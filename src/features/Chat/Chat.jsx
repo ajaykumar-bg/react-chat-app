@@ -26,14 +26,16 @@ const ChatContent = () => {
   } = useChat();
 
   useEffect(() => {
-    // Initialize mock data
-    setUsers(sortUsersByLastMessage(mockUsers));
-    setMessages(mockMessages);
-    // Auto-select first user
-    if (mockUsers.length > 0) {
-      selectUser(mockUsers[0]);
+    // Only initialize if users array is empty to prevent re-initialization
+    if (users.length === 0) {
+      setUsers(sortUsersByLastMessage(mockUsers));
+      setMessages(mockMessages);
+      // Auto-select first user
+      if (mockUsers.length > 0) {
+        selectUser(mockUsers[0]);
+      }
     }
-  }, [setUsers, setMessages, selectUser]);
+  }, [users.length, setUsers, setMessages, selectUser]);
 
   return (
     <Box sx={{ height: 'calc(100vh - 120px)', p: 2, position: 'relative' }}>

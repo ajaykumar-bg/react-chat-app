@@ -1,5 +1,5 @@
 import React from 'react';
-import { LightMode, DarkMode, Palette } from '@mui/icons-material';
+import { LightMode, DarkMode, Chat } from '@mui/icons-material';
 
 export const themeOptions = [
   {
@@ -15,9 +15,9 @@ export const themeOptions = [
     icon: <DarkMode sx={{ color: '#64B5F6' }} />,
   },
   {
-    value: 'pink',
-    label: 'Pink',
-    description: 'Vibrant and modern with custom pink accent',
-    icon: <Palette sx={{ color: '#E60386' }} />,
+    value: 'whatsapp',
+    label: 'WhatsApp',
+    description: 'Classic WhatsApp green theme for familiar chat experience',
+    icon: <Chat sx={{ color: '#25D366' }} />,
   },
 ];

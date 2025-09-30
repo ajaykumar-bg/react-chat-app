@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useCallback,
+} from 'react';
 import webSocketService from '../services/WebSocketService';
 
 // Initial state
@@ -190,22 +196,22 @@ export const ChatProvider = ({ children }) => {
   }, []);
 
   // Actions
-  const actions = {
-    setUsers: (users) => {
-      dispatch({
-        type: ActionTypes.SET_USERS,
-        payload: users,
-      });
-    },
+  const setUsers = useCallback((users) => {
+    dispatch({
+      type: ActionTypes.SET_USERS,
+      payload: users,
+    });
+  }, []);
 
-    setMessages: (messages) => {
-      dispatch({
-        type: ActionTypes.SET_MESSAGES,
-        payload: messages,
-      });
-    },
+  const setMessages = useCallback((messages) => {
+    dispatch({
+      type: ActionTypes.SET_MESSAGES,
+      payload: messages,
+    });
+  }, []);
 
-    sendMessage: (messageText) => {
+  const sendMessage = useCallback(
+    (messageText) => {
       if (!state.selectedUser || !messageText.trim()) return;
 
       const message = {
@@ -242,43 +248,49 @@ export const ChatProvider = ({ children }) => {
         recipientId: state.selectedUser.id,
       });
     },
+    [state.selectedUser]
+  );
 
-    selectUser: (user) => {
+  const selectUser = useCallback((user) => {
+    dispatch({
+      type: ActionTypes.SELECT_USER,
+      payload: user,
+    });
+
+    // Mark messages as read
+    if (user) {
       dispatch({
-        type: ActionTypes.SELECT_USER,
-        payload: user,
+        type: ActionTypes.MARK_MESSAGES_AS_READ,
+        payload: user.id,
       });
+    }
+  }, []);
 
-      // Mark messages as read
-      if (user) {
-        dispatch({
-          type: ActionTypes.MARK_MESSAGES_AS_READ,
-          payload: user.id,
-        });
-      }
-    },
+  const setSearchTerm = useCallback((term) => {
+    dispatch({
+      type: ActionTypes.SET_SEARCH_TERM,
+      payload: term,
+    });
+  }, []);
 
-    setSearchTerm: (term) => {
-      dispatch({
-        type: ActionTypes.SET_SEARCH_TERM,
-        payload: term,
-      });
-    },
+  const setTypingStatus = useCallback((userId, isTyping) => {
+    dispatch({
+      type: ActionTypes.SET_TYPING_STATUS,
+      payload: { userId, isTyping },
+    });
 
-    setTypingStatus: (userId, isTyping) => {
-      dispatch({
-        type: ActionTypes.SET_TYPING_STATUS,
-        payload: { userId, isTyping },
-      });
-
-      // Send typing status via WebSocket
-      webSocketService.sendTyping(userId, isTyping);
-    },
-  };
+    // Send typing status via WebSocket
+    webSocketService.sendTyping(userId, isTyping);
+  }, []);
 
   const value = {
     ...state,
-    ...actions,
+    setUsers,
+    setMessages,
+    sendMessage,
+    selectUser,
+    setSearchTerm,
+    setTypingStatus,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
