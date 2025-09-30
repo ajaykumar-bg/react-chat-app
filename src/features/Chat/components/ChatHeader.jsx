@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Avatar,
-  IconButton,
-  Badge,
-  Divider,
-} from '@mui/material';
+import { Box, Typography, Avatar, IconButton, Badge } from '@mui/material';
 import { Phone, Videocam, MoreVert, Search } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 

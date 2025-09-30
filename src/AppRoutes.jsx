@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Container, CircularProgress, Box } from '@mui/material';
+import { CircularProgress, Box } from '@mui/material';
 import {
   BrowserRouter as Router,
   Routes,
